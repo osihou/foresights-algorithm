@@ -1,0 +1,11 @@
+*keys.json
+*scraping.db
+target/
+.idea
+*.iws
+*.iml
+*.ipr
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+archaic/
