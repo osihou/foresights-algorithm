@@ -1,0 +1,63 @@
+{
+  "documents": [
+    {
+      "id": "1",
+      "sentiment": "mixed",
+      "confidenceScores": {
+        "positive": 0.14,
+        "neutral": 0.12,
+        "negative": 0.74
+      },
+      "sentences": [
+        {
+          "sentiment": "neutral",
+          "confidenceScores": {
+            "positive": 0.01,
+            "neutral": 0.97,
+            "negative": 0.02
+          },
+          "offset": 0,
+          "length": 35,
+          "text": "Staying here for more than a month."
+        },
+        {
+          "sentiment": "negative",
+          "confidenceScores": {
+            "positive": 0.0,
+            "neutral": 0.0,
+            "negative": 1.0
+          },
+          "offset": 36,
+          "length": 88,
+          "text": "Extremely bad experience with quality of break fast as also the way breakfast is served."
+        },
+        {
+          "sentiment": "negative",
+          "confidenceScores": {
+            "positive": 0.04,
+            "neutral": 0.12,
+            "negative": 0.84
+          },
+          "offset": 125,
+          "length": 50,
+          "text": "At times sambhar is missing or chutney is missing."
+        },
+        {
+          "sentiment": "positive",
+          "confidenceScores": {
+            "positive": 0.39,
+            "neutral": 0.23,
+            "negative": 0.38
+          },
+          "offset": 176,
+          "length": 25,
+          "text": "Quality remains an issue."
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "errors": [],
+  "modelVersion": "2020-04-01"
+}
+
