@@ -5,30 +5,22 @@ import cognitive.sentiment.SentimentDocumentGenerator;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import db.KeyPhrasesCollector;
+import db.SentimentCollector;
+import db.SqliteController;
 import utils.JSONCollector;
+
+import java.sql.SQLException;
 
 public class ForeSightsAlgorithm {
 
 
 
-    public static void main(String[] args) {
-        JSONCollector jsonCollector = new JSONCollector("./src/main/resources/test-sentiment.json");
-        SentimentDocumentGenerator sentimentDocumentGenerator = new SentimentDocumentGenerator(jsonCollector.getJsonObject());
-
-        SentimentDocument sentimentDocument = sentimentDocumentGenerator.analyseSentimentJson();
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
 
-        sentimentDocument.getSentenceList()
-                .forEach(x -> System.out.println(x.getText()));
-
-
-        JSONCollector jsonCollector1 = new JSONCollector("./src/main/resources/test-key-phrases.json");
-        KeyPhrasesGenerator keyPhrases = new KeyPhrasesGenerator(jsonCollector1.getJsonObject());
-
-        KeyPhrases keyPhrases1 = keyPhrases.analysePhrasesJson();
-
-        keyPhrases1.getPhrases()
-                .forEach(System.out::println);
+        SentimentCollector sentimentCollector = new SentimentCollector(new SqliteController("src/main/resources/scraping.db"));
+        sentimentCollector.collectSentiment("./src/main/resources/test-sentiment.json");
 
 
 
