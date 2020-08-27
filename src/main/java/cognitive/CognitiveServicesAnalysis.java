@@ -7,14 +7,12 @@ import utils.Documents;
 import utils.KeyInitializer;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 
 public class CognitiveServicesAnalysis {
 
-    private String path = "/text/analytics/v3.0/sentiment";
+    private final String path;
     private String subscription_key;
     private String endpoint;
 
@@ -23,6 +21,9 @@ public class CognitiveServicesAnalysis {
         KeyInitializer keyInitializer = new KeyInitializer();
         setEndpoint(keyInitializer.getEndpoint());
         setSubscription_key(keyInitializer.getSubscription_key());
+
+
+
     }
 
     public void setSubscription_key(String subscription_key) {
@@ -39,7 +40,6 @@ public class CognitiveServicesAnalysis {
 
         URL url = new URL(endpoint+path);
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "text/json");
         connection.setRequestProperty("Ocp-Apim-Subscription-Key", subscription_key);
@@ -54,10 +54,12 @@ public class CognitiveServicesAnalysis {
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()));
+
         String line;
         while ((line = in.readLine()) != null) {
             response.append(line);
         }
+
         in.close();
 
         return response.toString();

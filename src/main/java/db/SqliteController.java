@@ -7,19 +7,33 @@ import java.sql.SQLException;
 
 public class SqliteController {
 
-    private final Connection connection;
+    private Connection connection;
 
-    public SqliteController(String path) throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");
-        connection = DriverManager.getConnection("jdbc:sqlite:"+path);
+    public SqliteController(String path)  {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:"+path);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
 
-    public PreparedStatement getPreparedStatement(String statement) throws SQLException {
-        return connection.prepareStatement(statement);
+    public PreparedStatement getPreparedStatement(String statement) {
+        try {
+            return connection.prepareStatement(statement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public void closeConnection() throws SQLException {
-        connection.close();
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -16,4 +16,8 @@ public class Documents {
     public void add(String id, String language, String text) {
         this.documents.add (new Document (id, language, text));
     }
+
+    public int getLength(){
+        return  documents.size();
+    }
 }

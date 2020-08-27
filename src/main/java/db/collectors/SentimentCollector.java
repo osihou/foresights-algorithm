@@ -1,10 +1,11 @@
-package db;
+package db.collectors;
 
 import cognitive.sentiment.ConfidenceScore;
 import cognitive.sentiment.Sentence;
 import cognitive.sentiment.SentimentDocument;
 import cognitive.sentiment.SentimentDocumentGenerator;
 import com.google.gson.JsonObject;
+import db.SqliteController;
 import utils.JSONCollector;
 
 import java.sql.PreparedStatement;

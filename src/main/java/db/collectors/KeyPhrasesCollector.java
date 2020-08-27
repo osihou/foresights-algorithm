@@ -1,8 +1,9 @@
-package db;
+package db.collectors;
 
 import cognitive.phrases.KeyPhrases;
 import cognitive.phrases.KeyPhrasesGenerator;
 import com.google.gson.JsonObject;
+import db.SqliteController;
 import utils.JSONCollector;
 
 import java.sql.PreparedStatement;
@@ -35,7 +36,7 @@ public class KeyPhrasesCollector {
                 });
     }
 
-    public void collectKeyPhrases(String path) throws SQLException {
+    public void collectKeyPhrases(String path)  {
         JSONCollector jsonCollector1 = new JSONCollector(path);
         KeyPhrasesGenerator keyPhrases = new KeyPhrasesGenerator(jsonCollector1.getJsonObject());
         KeyPhrases keyPhrases1 = keyPhrases.analysePhrasesJson();
