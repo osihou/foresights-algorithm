@@ -20,7 +20,7 @@ public class OpinionProcessor {
     private final CognitiveServicesAnalysis keyPhrasesAnalysis;
     private final CognitiveServicesAnalysis sentimentAnalysis;
 
-    private final String query1 = "SELECT DISTINCT id FROM opinion LIMIT 5000";
+    private final String query1 = "SELECT DISTINCT id FROM opinion LIMIT 10000";
     private final String query2 = "SELECT * FROM opinion WHERE id = ? LIMIT 5";
 
     private final String path = "src/main/resources/scraping.db";
@@ -50,14 +50,21 @@ public class OpinionProcessor {
             preparedStatement.setString(1, id);
             ResultSet resultSet2 = preparedStatement.executeQuery();
 
-            Documents documents = new Documents ();
+
 
             while (resultSet2.next()){
+                Documents documents = new Documents ();
                 documents.add(id,"en", resultSet2.getString("text") );
+
+                try {
+                    processKeyPhrases(documents);
+                    processSentiment(documents);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
 
-            processKeyPhrases(documents);
-            processSentiment(documents);
+
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
