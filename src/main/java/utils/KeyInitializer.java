@@ -6,7 +6,7 @@ public class KeyInitializer {
     private String endpoint;
 
     public KeyInitializer(){
-        JSONCollector jsonCollector = new JSONCollector("./src/main/resources/keys.json");
+        JSONCollector jsonCollector = new JSONCollector("./src/main/resources/keys/keys.json");
         setEndpoint(jsonCollector.readStringValue("endpoint"));
         setSubscription_key(jsonCollector.readStringValue("subscription_key"));
     }

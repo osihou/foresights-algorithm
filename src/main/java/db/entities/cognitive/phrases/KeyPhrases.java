@@ -1,4 +1,4 @@
-package cognitive.phrases;
+package db.entities.cognitive.phrases;
 
 import java.util.ArrayList;
 import java.util.List;

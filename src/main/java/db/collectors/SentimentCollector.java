@@ -1,10 +1,10 @@
 package db.collectors;
 
-import cognitive.sentiment.Sentence;
-import cognitive.sentiment.SentimentDocument;
-import cognitive.azure.SentimentDocumentGenerator;
+import db.entities.cognitive.sentence.Sentence;
+import db.entities.cognitive.sentiment.SentimentDocument;
+import cognitive.azure.generators.SentimentDocumentGenerator;
 import com.google.gson.JsonObject;
-import db.SqliteController;
+import db.controllers.DataController;
 import utils.JSONCollector;
 
 import java.sql.PreparedStatement;
@@ -15,10 +15,10 @@ public class SentimentCollector {
     private final String table_name_2 = "sentence";
     private final String query1 = "INSERT INTO " +table_name_1+ "(id_location, sent, pos, neg, neu) VALUES (?,?,?,?,?)";
     private final String query2 = "INSERT INTO " +table_name_2+ "(id_location, sent, pos, neg, neu, ost, len, text) VALUES (?,?,?,?,?,?,?,?)";
-    private final SqliteController sqliteController;
+    private final DataController dataController;
 
-    public SentimentCollector(SqliteController sqliteController){
-        this.sqliteController = sqliteController;
+    public SentimentCollector(DataController dataController){
+        this.dataController = dataController;
     }
 
     public void collectSentiment(JsonObject jsonObject) throws SQLException {
@@ -61,7 +61,7 @@ public class SentimentCollector {
     }
 
     private void digestSentiment(SentimentDocument sentimentDocument) throws SQLException {
-        PreparedStatement preparedStatement = sqliteController.getPreparedStatement(query1);
+        PreparedStatement preparedStatement = dataController.getPreparedStatement(query1);
 
 
         preparedStatement.setString(1, sentimentDocument.getId());
@@ -77,7 +77,7 @@ public class SentimentCollector {
     }
 
     private void digestSentence(String id, Sentence x) throws SQLException {
-        PreparedStatement preparedStatement = sqliteController.getPreparedStatement(query2);
+        PreparedStatement preparedStatement = dataController.getPreparedStatement(query2);
 
         preparedStatement.setString(1, id);
         preparedStatement.setString(2, x.getSentiment());

@@ -1,4 +1,4 @@
-package cognitive.sentiment;
+package db.entities.cognitive;
 
 public class ConfidenceScore {
     private String positive;

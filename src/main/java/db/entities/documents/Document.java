@@ -1,4 +1,4 @@
-package utils;
+package db.entities.documents;
 
 public class Document {
     public String id, language, text;
