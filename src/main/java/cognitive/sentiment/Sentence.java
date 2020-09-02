@@ -2,6 +2,8 @@ package cognitive.sentiment;
 
 public class Sentence {
 
+    private String id;
+
     private String sentiment;
 
     private String offset;
@@ -12,6 +14,7 @@ public class Sentence {
 
     public Sentence() {
     }
+
 
     public Sentence(
             String sentiment,
@@ -25,6 +28,14 @@ public class Sentence {
         this.length = length;
         this.text = text;
         this.confidenceScore = confidenceScore;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSentiment() {
