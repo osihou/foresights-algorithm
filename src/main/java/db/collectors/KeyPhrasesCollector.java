@@ -1,7 +1,7 @@
 package db.collectors;
 
 import cognitive.phrases.KeyPhrases;
-import cognitive.phrases.KeyPhrasesGenerator;
+import cognitive.azure.KeyPhrasesGenerator;
 import com.google.gson.JsonObject;
 import db.SqliteController;
 import utils.JSONCollector;

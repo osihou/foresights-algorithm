@@ -1,5 +1,5 @@
 *keys.json
-*scraping.db
+*.db
 target/
 .idea
 *.iws

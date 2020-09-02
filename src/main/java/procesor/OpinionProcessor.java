@@ -1,13 +1,13 @@
-package db;
+package procesor;
 
-import cognitive.CognitiveServicesAnalysis;
+import cognitive.azure.CognitiveServicesAnalysis;
+import db.SqliteController;
 import db.collectors.KeyPhrasesCollector;
 import db.collectors.SentimentCollector;
 import utils.Documents;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,16 +20,16 @@ public class OpinionProcessor {
     private final CognitiveServicesAnalysis keyPhrasesAnalysis;
     private final CognitiveServicesAnalysis sentimentAnalysis;
 
-    private final String query1 = "SELECT DISTINCT id FROM opinion LIMIT 10000";
-    private final String query2 = "SELECT * FROM opinion WHERE id = ? LIMIT 5";
+    private final String query1 = "SELECT DISTINCT id FROM opinion";
+    private final String query2 = "SELECT * FROM opinion WHERE id = ?";
 
-    private final String path = "src/main/resources/scraping.db";
+    private final String path = "src/main/resources/";
 
     private final String keyPath = "text/analytics/v3.0/keyPhrases";
     private final String sentimentPath = "text/analytics/v3.0/sentiment" ;
 
-    public OpinionProcessor() {
-        sqliteController = new SqliteController(path);
+    public OpinionProcessor(String name) {
+        sqliteController = new SqliteController(path + name );
 
         keyPhrasesCollector = new KeyPhrasesCollector(sqliteController);
         sentimentCollector = new SentimentCollector(sqliteController);
@@ -41,9 +41,7 @@ public class OpinionProcessor {
     public void processOpinion() throws Exception {
         ResultSet resultSet1 = sqliteController.getPreparedStatement(query1).executeQuery();
 
-        for (;resultSet1.next(); ) {
-
-
+        while (resultSet1.next()) {
 
             String id = resultSet1.getString("id");
             PreparedStatement preparedStatement = sqliteController.getPreparedStatement(query2);
@@ -63,8 +61,6 @@ public class OpinionProcessor {
                     ex.printStackTrace();
                 }
             }
-
-
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();

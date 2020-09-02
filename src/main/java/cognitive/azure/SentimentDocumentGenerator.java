@@ -1,5 +1,8 @@
-package cognitive.sentiment;
+package cognitive.azure;
 
+import cognitive.sentiment.ConfidenceScore;
+import cognitive.sentiment.Sentence;
+import cognitive.sentiment.SentimentDocument;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

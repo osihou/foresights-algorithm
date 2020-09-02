@@ -1,4 +1,4 @@
-package cognitive;
+package cognitive.azure;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -21,9 +21,6 @@ public class CognitiveServicesAnalysis {
         KeyInitializer keyInitializer = new KeyInitializer();
         setEndpoint(keyInitializer.getEndpoint());
         setSubscription_key(keyInitializer.getSubscription_key());
-
-
-
     }
 
     public void setSubscription_key(String subscription_key) {
