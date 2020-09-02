@@ -3,11 +3,8 @@ package cognitive.sentiment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SentimentDocument {
+public class SentimentDocument extends Sentiment{
 
-    private String id;
-    private String sentiment;
-    private ConfidenceScore confidenceScore;
     private List<Sentence> sentenceList;
 
     public SentimentDocument(){
@@ -16,34 +13,17 @@ public class SentimentDocument {
 
     public SentimentDocument(
             String id,
+            String sentiment,
             ConfidenceScore confidenceScore,
-            List<Sentence> sentenceList,
-            String sentiment
+            List<Sentence> sentenceList
     ) {
-        this.id = id;
-        this.confidenceScore = confidenceScore;
+        super(id, sentiment, confidenceScore);
         this.sentenceList = sentenceList;
-        this.sentiment = sentiment;
     }
+
 
     public void addToList(Sentence sentence){
         sentenceList.add(sentence);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public ConfidenceScore getConfidenceScore() {
-        return confidenceScore;
-    }
-
-    public void setConfidenceScore(ConfidenceScore confidenceScore) {
-        this.confidenceScore = confidenceScore;
     }
 
     public List<Sentence> getSentenceList() {
@@ -54,11 +34,5 @@ public class SentimentDocument {
         this.sentenceList = sentenceList;
     }
 
-    public String getSentiment() {
-        return sentiment;
-    }
 
-    public void setSentiment(String sentiment) {
-        this.sentiment = sentiment;
-    }
 }
