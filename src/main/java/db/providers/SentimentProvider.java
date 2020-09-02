@@ -1,21 +1,16 @@
 package db.providers;
 
-import cognitive.phrases.KeyPhrases;
-import cognitive.sentiment.ConfidenceScore;
-import cognitive.sentiment.Sentence;
-import cognitive.sentiment.Sentiment;
-import cognitive.sentiment.SentimentDocument;
-import db.SqliteController;
+import db.entities.cognitive.ConfidenceScore;
+import db.entities.cognitive.sentence.Sentence;
+import db.entities.cognitive.sentiment.Sentiment;
+import db.controllers.DataController;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SentimentProvider {
-
-    private final SqliteController sqliteController;
+public class SentimentProvider extends Provider {
 
     private final String table_name_1 = "sentiment";
     private final String table_name_2 = "sentence";
@@ -29,12 +24,13 @@ public class SentimentProvider {
     private final String query5 = "SELECT * FROM "+table_name_2 + "";
 
 
-    public SentimentProvider(SqliteController sqliteController){
-        this.sqliteController = sqliteController;
+    public SentimentProvider(DataController dataController){
+        super(dataController);
     }
+
+
     public List<Sentiment> provideSentimentList() throws SQLException {
-        PreparedStatement preparedStatement = sqliteController.getPreparedStatement(query4);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = getResultSet(query4);
         List<Sentiment> sentimentList = new ArrayList<>();
 
         while(resultSet.next()){
@@ -58,8 +54,7 @@ public class SentimentProvider {
     }
 
     public List<Sentence> provideSentenceList() throws SQLException {
-        PreparedStatement preparedStatement = sqliteController.getPreparedStatement(query5);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = getResultSet(query5);
         List<Sentence> sentenceList = new ArrayList<>();
 
         while(resultSet.next()){

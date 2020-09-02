@@ -1,9 +1,9 @@
 package db.collectors;
 
-import cognitive.phrases.KeyPhrases;
-import cognitive.azure.KeyPhrasesGenerator;
+import db.entities.cognitive.phrases.KeyPhrases;
+import cognitive.azure.generators.KeyPhrasesGenerator;
 import com.google.gson.JsonObject;
-import db.SqliteController;
+import db.controllers.DataController;
 import utils.JSONCollector;
 
 import java.sql.PreparedStatement;
@@ -12,10 +12,10 @@ import java.sql.SQLException;
 public class KeyPhrasesCollector {
     private final String table_name = "keywords";
     private final String query1 = "INSERT INTO "+table_name+ "(id_location, text) VALUES (?,?)";
-    private final SqliteController sqliteController;
+    private final DataController dataController;
 
-    public KeyPhrasesCollector(SqliteController sqliteController){
-        this.sqliteController = sqliteController;
+    public KeyPhrasesCollector(DataController dataController){
+        this.dataController = dataController;
     }
 
     public void collectKeyPhrases(JsonObject jsonObject){
@@ -56,7 +56,7 @@ public class KeyPhrasesCollector {
     }
 
     private void digestPhrase( String loc , String text) throws SQLException {
-        PreparedStatement preparedStatement = sqliteController.getPreparedStatement(query1);
+        PreparedStatement preparedStatement = dataController.getPreparedStatement(query1);
 
         preparedStatement.setString(1,loc);
         preparedStatement.setString(2, text);
