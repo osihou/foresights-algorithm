@@ -1,8 +1,8 @@
-package cognitive.azure;
+package cognitive.azure.generators;
 
-import cognitive.sentiment.ConfidenceScore;
-import cognitive.sentiment.Sentence;
-import cognitive.sentiment.SentimentDocument;
+import db.entities.cognitive.ConfidenceScore;
+import db.entities.cognitive.sentence.Sentence;
+import db.entities.cognitive.sentiment.SentimentDocument;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

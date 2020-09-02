@@ -1,11 +1,11 @@
-package db;
+package db.controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SqliteController {
+public class SqliteController extends DataController{
 
     private Connection connection;
 
@@ -18,7 +18,7 @@ public class SqliteController {
         }
         
     }
-
+    @Override
     public PreparedStatement getPreparedStatement(String statement) {
         try {
             return connection.prepareStatement(statement);
@@ -28,6 +28,7 @@ public class SqliteController {
         }
     }
 
+    @Override
     public void closeConnection() {
         try {
             connection.close();

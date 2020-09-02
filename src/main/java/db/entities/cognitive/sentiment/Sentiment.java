@@ -1,4 +1,6 @@
-package cognitive.sentiment;
+package db.entities.cognitive.sentiment;
+
+import db.entities.cognitive.ConfidenceScore;
 
 public class Sentiment {
     private String id;

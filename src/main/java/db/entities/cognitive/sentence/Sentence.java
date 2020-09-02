@@ -1,4 +1,6 @@
-package cognitive.sentiment;
+package db.entities.cognitive.sentence;
+
+import db.entities.cognitive.ConfidenceScore;
 
 public class Sentence {
 

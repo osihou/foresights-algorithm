@@ -1,4 +1,4 @@
-package utils;
+package db.entities.documents;
 
 import java.util.ArrayList;
 import java.util.List;

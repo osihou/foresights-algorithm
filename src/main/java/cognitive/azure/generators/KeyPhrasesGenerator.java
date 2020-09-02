@@ -1,7 +1,6 @@
-package cognitive.azure;
+package cognitive.azure.generators;
 
-import cognitive.phrases.KeyPhrases;
-import cognitive.sentiment.SentimentDocument;
+import db.entities.cognitive.phrases.KeyPhrases;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

@@ -1,4 +1,7 @@
-package cognitive.sentiment;
+package db.entities.cognitive.sentiment;
+
+import db.entities.cognitive.ConfidenceScore;
+import db.entities.cognitive.sentence.Sentence;
 
 import java.util.ArrayList;
 import java.util.List;
